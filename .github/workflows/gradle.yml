@@ -10,7 +10,7 @@ jobs:
   build:
     concurrency: 
       group: sample
-      cancel-in-progress: false
+      cancel-in-progress: true
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:

@@ -10,7 +10,7 @@ on:
   
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
+    runs-on: demo
     concurrency: 
       group: sample
       cancel-in-progress: true

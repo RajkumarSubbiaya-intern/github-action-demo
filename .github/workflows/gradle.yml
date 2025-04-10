@@ -8,6 +8,8 @@ on:
 
 jobs:
   build:
+    concurrency: 
+      group: sample
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -26,6 +28,7 @@ jobs:
 
     - name: Build with Gradle
       run: ./gradlew build
+  
 
   publish:
     needs: build

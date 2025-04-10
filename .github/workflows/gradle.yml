@@ -13,7 +13,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     concurrency: 
       group: sample
-      cancel-in-progress: false
+      cancel-in-progress: true
     
     strategy:
       matrix:

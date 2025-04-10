@@ -5,13 +5,15 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
+    
+concurrency: 
+  group: sample
+  cancel-in-progress: true
+  
 jobs:
   build:
     runs-on: ${{ matrix.os }}
-    concurrency: 
-      group: sample
-      cancel-in-progress: true
+    
     strategy:
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]

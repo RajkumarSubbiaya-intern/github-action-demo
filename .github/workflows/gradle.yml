@@ -12,7 +12,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     concurrency: 
-      group: sample-group
+      group: ${{ github.workflow }}-${{ github.ref }}
       cancel-in-progress: false
     
     strategy:

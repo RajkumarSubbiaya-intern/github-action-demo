@@ -10,10 +10,10 @@ on:
   
 jobs:
   build:
-    runs-on: demo
+    runs-on: ubuntu-latest
     concurrency: 
-      group: ${{ github.ref }}
-      cancel-in-progress: true
+      group: sample-group
+      cancel-in-progress: false
     
     strategy:
       matrix:

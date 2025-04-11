@@ -7,13 +7,17 @@ on:
 
 jobs:
   build:
+    runs-on: ${{ matrix.os }}
+    continue-on-error: ${{ matrix.experimental }}
+
     strategy:
-      max-parallel: 1
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]
-
-
-    runs-on: ${{ matrix.os }}
+        experimental: [false]
+        include:
+          - os: ubuntu-latest
+            experimental: true
     
     steps:
     - uses: actions/checkout@v2
@@ -31,3 +35,6 @@ jobs:
     steps:
     - name: Dummy publish step
       run: echo "Publishing..."
+
+
+

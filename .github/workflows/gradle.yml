@@ -1,31 +1,31 @@
-name: Serial OS Jobs with Concurrency
-
+name: Java CI with Gradle
 on:
   push:
-
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 jobs:
-  ubuntu:
+  build:
     runs-on: ubuntu-latest
     concurrency:
-      group: serial-os-job
+      group: sample-group
+      cancel-in-progress: false
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macOS-latest, windows-latest]
     steps:
-      - name: Run on Ubuntu
-        run: echo "Running on Ubuntu"
-
-  macos:
-    runs-on: macos-latest
-    needs: ubuntu
-    concurrency:
-      group: serial-os-job
+    - uses: actions/checkout@v2
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+    - name: Build with Gradle
+      run: ./gradlew build
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
     steps:
-      - name: Run on macOS
-        run: echo "Running on macOS"
-
-  windows:
-    runs-on: windows-latest
-    needs: macos
-    concurrency:
-      group: serial-os-job
-    steps:
-      - name: Run on Windows
-        run: echo "Running on Windows"
+    - name: Dummy publish step
+      run: echo "Publishing..."

@@ -8,13 +8,8 @@ on:
 jobs:
   build:
     strategy:
-      max-parallel: 3
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]
-
-    concurrency:
-      group: sample-group
-      cancel-in-progress: false
 
     runs-on: ${{ matrix.os }}
     

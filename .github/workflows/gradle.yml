@@ -6,7 +6,7 @@ on:
     branches: [ "main" ]
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     concurrency:
       group: sample-group
       cancel-in-progress: false

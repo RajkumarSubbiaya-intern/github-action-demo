@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     strategy:
-      max-parallel: 1
+      max-parallel: 3
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]
 

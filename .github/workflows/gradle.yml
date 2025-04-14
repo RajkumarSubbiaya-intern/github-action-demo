@@ -8,7 +8,9 @@ on:
 jobs:
   build:
     runs-on: ${{ matrix.os }}
-    continue-on-error: ${{ matrix.experimental }}
+    concurrency:
+      group: sample-group
+      cancel-in-progress: false
 
     strategy:
       fail-fast: false
